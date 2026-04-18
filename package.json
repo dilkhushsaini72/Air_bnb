@@ -1,0 +1,28 @@
+{
+  "name": "air-bnb",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000A\u0000i\u0000r\u0000_\u0000b\u0000n\u0000b\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dilkhushsaini72/Air_bnb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dilkhushsaini72/Air_bnb/issues"
+  },
+  "homepage": "https://github.com/dilkhushsaini72/Air_bnb#readme",
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "ejs-mate": "^4.0.0",
+    "express": "^5.2.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^9.4.1"
+  }
+}

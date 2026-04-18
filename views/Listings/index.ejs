@@ -1,0 +1,15 @@
+<% layout("/Layouts/boilerplate") %>
+  <body>
+    <h2>This home ejs</h2>
+    <form method="get" action="/listing/new">
+      <button>New Listing</button>
+    </form>
+    
+    <% for(data of allListings) { %>
+        <ul>
+           <a href="/listing/<%= data.id %>">
+             <li><%= data.title %> </li>
+           </a>
+        </ul>
+    <% } %>
+  </body>
