@@ -1,0 +1,43 @@
+/* body {
+    background-color: pink;
+} */
+
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+
+/* Footer style */
+
+.f-info{
+    padding-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: bisque;
+    gap: 1rem;
+}
+
+.social-links{
+    font-size: 1.2em;
+    color: rgb(77, 77, 77);
+}
+
+.social-links i:hover{
+    font-size:1.3em;
+    color: black;
+    cursor: pointer;
+}
+
+/* Card  */
+
+.card-container{
+    display: grid;
+    grid-column: 3;
+}

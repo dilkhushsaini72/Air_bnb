@@ -1,15 +1,33 @@
 <% layout("/Layouts/boilerplate") %>
-  <body>
-    <h2>This home ejs</h2>
-    <form method="get" action="/listing/new">
-      <button>New Listing</button>
-    </form>
-    
+
+<div class="container mt-4 mb-4">
+  <h2 class="text-center mb-4">All Listings</h2>
+
+  <div class="row g-4">
     <% for(data of allListings) { %>
-        <ul>
-           <a href="/listing/<%= data.id %>">
-             <li><%= data.title %> </li>
-           </a>
-        </ul>
+      
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="/listing/<%= data.id %>" class="text-decoration-none text-dark">
+
+          <div class="card shadow-sm h-100">
+            <img 
+              src="<%= data.image %>" 
+              class="card-img-top" 
+              alt="Listing image"
+              style="height: 200px; object-fit: cover;"
+            >
+
+            <div class="card-body">
+              <h5 class="card-title"><%= data.title %></h5>
+              <p class="card-text fw-bold text-success">
+                ₹ <%= data.price.toLocaleString("en-IN") %>/Night
+              </p>
+            </div>
+          </div>
+
+        </a>
+      </div>
+
     <% } %>
-  </body>
+  </div>
+</div>
