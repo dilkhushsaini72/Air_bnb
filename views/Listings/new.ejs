@@ -6,7 +6,12 @@
       <h2 class="text-center mb-4 text-capitalize">Create your new listing</h2>
 
       <div class="card shadow p-4">
-        <form method="post" action="/listing/new">
+        <form
+          class="needs-validation"
+          method="post"
+          action="/listing/new"
+          novalidate
+        >
           <div class="mb-3">
             <label class="form-label">Title</label>
             <input
@@ -71,7 +76,6 @@
               name="listing[image]"
               class="form-control"
               placeholder="Image URL/LINK"
-              required
             />
           </div>
 
