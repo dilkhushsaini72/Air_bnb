@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const path = require("path");
 const Listing = require("./models/listing");
 const ejsMate = require("ejs-mate");
+const wrapeAsync = require("./utils/wrapAsync.js");
 const app = express();
 const PORT = 8080;
 
@@ -12,7 +13,7 @@ app.set("views", path.join(__dirname, "/views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "public")));
 app.engine("ejs", ejsMate);
 
 const connectDB = async () => {
@@ -46,11 +47,15 @@ app.get("/listing/:id", async (req, res) => {
   res.render("./Listings/show.ejs", { listing });
 });
 
-app.post("/listing/new", async (req, res) => {
-  const newListing = new Listing(req.body.listing);
-  await newListing.save();
-  res.redirect("/listing");
-});
+//create route
+app.post(
+  "/listing/new",
+  wrapeAsync(async (req, res, next) => {
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listing");
+  }),
+);
 
 // Edit route
 app.get("/listing/:id/edit", async (req, res) => {
@@ -86,6 +91,10 @@ app.delete("/listing/:id", async (req, res) => {
 //   console.log("your listing was saved..");
 //   res.send("successfully tested listings..");
 // });
+
+app.use((err, req, res, next) => {
+  res.send("something wents wronge..");
+});
 
 app.listen(PORT, () => {
   console.log("server started..");
