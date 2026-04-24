@@ -4,7 +4,8 @@ const methodOverride = require("method-override");
 const path = require("path");
 const Listing = require("./models/listing");
 const ejsMate = require("ejs-mate");
-const wrapeAsync = require("./utils/wrapAsync.js");
+const WrapeAsync = require("./utils/WrapAsync.js");
+const ExpressError = require("./utils/ExpressError.js");
 const app = express();
 const PORT = 8080;
 
@@ -12,6 +13,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.engine("ejs", ejsMate);
@@ -50,7 +52,8 @@ app.get("/listing/:id", async (req, res) => {
 //create route
 app.post(
   "/listing/new",
-  wrapeAsync(async (req, res, next) => {
+  WrapeAsync(async (req, res, next) => {
+    console.log(req.body);
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listing");
@@ -93,7 +96,7 @@ app.delete("/listing/:id", async (req, res) => {
 // });
 
 app.use((err, req, res, next) => {
-  res.send("something wents wronge..");
+  
 });
 
 app.listen(PORT, () => {
